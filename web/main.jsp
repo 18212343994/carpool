@@ -1,0 +1,90 @@
+<%@ page import="java.util.List" %>
+<%@ page import="pojo.JWUser" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>用户管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- CSS -->
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Oleo+Script:400,700'>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+<div class="table-div">
+    <table class="table table-bordered">
+        <caption>
+            <form action="" method="">
+                <div class="input-append pull-right">
+                    <input placeholder="请输入要查找的用户名..." class="span8" id="appendedInputButton" type="text">
+                    <button class="btn" type="button">搜&nbsp;&nbsp;索</button>
+                    <a class="btn" type="button">退出登录</a>
+                </div>
+            </form>
+        </caption>
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%
+            Object user_data = request.getAttribute("user_data");
+            if (user_data != null) {
+                List<JWUser> list = (List<JWUser>) user_data;
+                for (JWUser jwUser : list) {
+        %>
+        <tr>
+            <td><%= jwUser.getUser_id() %></td>
+            <td><%= jwUser.getUser_name() %></td>
+            <td><%= jwUser.getUser_pwd() %></td>
+            <td>
+                <a href="#">删除</a>&nbsp;/&nbsp;<a href="#">审核</a>
+            </td>
+        </tr>
+        <%
+                }
+            }
+        %>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5">
+                <ul class="pager">
+                    <li><a href="#">首&nbsp;&nbsp;页</a></li>
+                    <li><a href="#">上一页</a></li>
+                    <li><a href="#">下一页</a></li>
+                    <li><a href="#">尾&nbsp;&nbsp;页</a></li>
+                </ul>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+<!-- Javascript -->
+<script src="assets/js/jquery-1.8.2.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.backstretch.min.js"></script>
+<script src="assets/js/scripts.js"></script>
+</body>
+</html>
+
